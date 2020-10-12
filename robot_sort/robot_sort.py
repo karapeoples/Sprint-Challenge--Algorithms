@@ -96,8 +96,48 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
+        # Robot starts at position 0
+        # Pick up current card and check to see if robot can move right
+        # Compare Card and if Card is Higher, swap
+        # Move all the way in one direction doing swaps
+        # Light Off Compare >, Light On Compare >
         # Fill this out
-        pass
+        # Pick up first item
+        self.swap_item()
+        self.move_right()
+        self.set_light_on()
+
+        # Light Off Compare <, Light On Compare >
+        while self.light_is_on():
+            self.set_light_off()
+
+            # Pick up current card and check to see if robot can move right
+            while self.can_move_right() and self.compare_item() is not None:
+                # Compare Card and if Card is Higher, swap
+                # Move all the way in one direction doing swaps
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.move_right()
+                    self.set_light_on()
+                else:
+                    self.move_right()
+            #Pick up card and check to see if robot can move left
+            while self.can_move_left() and self.compare_item() is not None:
+                # Compare Card and if Card is Higher, swap
+                # Move all the way in one direction doing swaps
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.move_left()
+                    self.set_light_on()
+                else:
+                    self.move_left()
+        #Iteration Step to actually sort items
+            if self.can_move_right():
+                self.swap_item()
+                self.move_right()
+                self.swap_item()
+                self.move_right()
+        self.swap_item()
 
 
 if __name__ == "__main__":
